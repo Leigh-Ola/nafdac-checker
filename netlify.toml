@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22.22.2"
+# Netlify selects the supported Functions runtime from the build's Node major.
+# AWS_LAMBDA_JS_RUNTIME overrides must be set in Netlify's UI/CLI/API, not here.
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@sparticuz/chromium", "puppeteer-core"]
+  included_files = ["node_modules/@sparticuz/chromium/bin/**"]
